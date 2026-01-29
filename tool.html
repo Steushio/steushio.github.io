@@ -29,7 +29,7 @@
 
   <button onclick="show()">Show Overlay</button>
 
-  <div id="overlay" class="overlay">
+  <div id="overlay" class="overlay"></div>
     Stream Starting Soon<br>
     Designed for Creators
   </div>
@@ -40,7 +40,15 @@
 
 <script>
   function show() {
-    document.getElementById("overlay").style.display = "block";
+    const overlay = document.getElementById("overlay");
+    const stored = localStorage.getItem("steushio_overlay");
+
+    if (stored) {
+      overlay.style.backgroundImage = "url(" + stored + ")";
+      overlay.style.display = "block";
+    } else {
+      alert("No overlay uploaded yet. Upload one first.");
+    }
   }
 </script>
 

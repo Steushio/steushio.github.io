@@ -2,52 +2,49 @@
 <html>
 <head>
   <title>Overlay Preview – Steushio</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
     .overlay {
-      display: none;
-      width: 400px;
+      margin-top: 30px;
+      width: 420px;
       height: 120px;
-      background: linear-gradient(90deg, #6a11cb, #2575fc);
-      color: white;
+      background: linear-gradient(90deg, #ff512f, #dd2476);
+      border-radius: 14px;
+      display: none;
       padding: 20px;
+      color: white;
       font-size: 22px;
-      margin-top: 20px;
-      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,0,100,.4);
     }
   </style>
 </head>
 <body>
 
-  <h1>Stream Overlay Preview</h1>
+<div class="container">
+  <h1>Overlay Preview</h1>
 
   <p>
-    This page demonstrates a sample stream overlay included with
-    Steushio Creator Tools.
+    Preview how stream overlays included in Steushio Creator Tools look on screen.
   </p>
 
-  <p>
-    <strong>Note:</strong> This is a visual preview only. No payments or
-    transactions occur on this page.
-  </p>
+  <p><strong>Demo only.</strong> No payments or transactions occur here.</p>
 
-  <button onclick="showOverlay()">Preview Overlay</button>
+  <button onclick="show()">Show Overlay</button>
 
   <div id="overlay" class="overlay">
-    Stream Overlay Preview<br>
+    Stream Starting Soon<br>
     Designed for Creators
   </div>
 
-  <script>
-    function showOverlay() {
-      document.getElementById("overlay").style.display = "block";
-    }
-  </script>
-
   <br><br>
-  <a href="index.html">Back to Home</a>
+  <a href="index.html">← Back to Home</a>
+</div>
+
+<script>
+  function show() {
+    document.getElementById("overlay").style.display = "block";
+  }
+</script>
 
 </body>
 </html>

@@ -31,27 +31,40 @@
 
 <script>
   function preview(event) {
-    const file = event.target.files[0];
-    if (!file) return;
+    const files = event.target.files;
+    if (!files.length) return;
 
-    const reader = new FileReader();
+    let overlays = JSON.parse(localStorage.getItem("steushio_overlays")) || [];
 
-    reader.onload = function(e) {
-      // Save image to localStorage
-      localStorage.setItem("steushio_overlay", e.target.result);
-
-      // Show preview
-      const img = document.createElement("img");
-      img.src = e.target.result;
-
-      const previewDiv = document.getElementById("preview");
-      previewDiv.innerHTML = "";
-      previewDiv.appendChild(img);
-    };
-
-    reader.readAsDataURL(file);
+    Array.from(files).forEach(file => {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        overlays.push(e.target.result);
+        localStorage.setItem("steushio_overlays", JSON.stringify(overlays));
+        renderPreview(overlays);
+      };
+      reader.readAsDataURL(file);
+    });
   }
+
+  function renderPreview(overlays) {
+    const previewDiv = document.getElementById("preview");
+    previewDiv.innerHTML = "";
+    overlays.forEach(src => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.style.maxWidth = "200px";
+      img.style.margin = "10px";
+      img.style.borderRadius = "10px";
+      previewDiv.appendChild(img);
+    });
+  }
+
+  // Load existing overlays on page load
+  const stored = JSON.parse(localStorage.getItem("steushio_overlays")) || [];
+  renderPreview(stored);
 </script>
+
 
 
 </body>

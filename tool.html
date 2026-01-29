@@ -1,54 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Stream Alert Preview Tool – Steushio</title>
+  <title>Overlay Preview – Steushio</title>
   <style>
-    #alertBox {
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .overlay {
       display: none;
+      width: 400px;
+      height: 120px;
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      color: white;
       padding: 20px;
-      background: #222;
-      color: #0f0;
-      font-size: 20px;
+      font-size: 22px;
       margin-top: 20px;
-      width: fit-content;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
-  <h1>Stream Alert Preview Tool</h1>
+
+  <h1>Stream Overlay Preview</h1>
 
   <p>
-    This is a visual preview tool that demonstrates how stream alerts
-    appear on the Steushio platform.
+    This page demonstrates a sample stream overlay included with
+    Steushio Creator Tools.
   </p>
 
   <p>
-    <strong>Note:</strong> This is a demo preview only. No real payments
-    or transactions are processed on this page.
+    <strong>Note:</strong> This is a visual preview only. No payments or
+    transactions occur on this page.
   </p>
 
-  <label>Display Name:</label><br>
-  <input id="name" placeholder="Supporter Name"><br><br>
+  <button onclick="showOverlay()">Preview Overlay</button>
 
-  <label>Test Value:</label><br>
-  <input id="value" placeholder="99"><br><br>
-
-  <button onclick="showAlert()">Preview Alert</button>
-
-  <div id="alertBox"></div>
+  <div id="overlay" class="overlay">
+    Stream Overlay Preview<br>
+    Designed for Creators
+  </div>
 
   <script>
-    function showAlert() {
-      const name = document.getElementById("name").value || "User";
-      const value = document.getElementById("value").value || "99";
-      const box = document.getElementById("alertBox");
-
-      box.innerHTML = "Alert triggered by " + name + " (value: " + value + ")";
-      box.style.display = "block";
+    function showOverlay() {
+      document.getElementById("overlay").style.display = "block";
     }
   </script>
 
   <br><br>
   <a href="index.html">Back to Home</a>
+
 </body>
 </html>

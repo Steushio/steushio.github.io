@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Stream Alert Tool – Steushio</title>
+  <title>Stream Alert Preview Tool – Steushio</title>
   <style>
     #alertBox {
       display: none;
@@ -18,27 +18,32 @@
   <h1>Stream Alert Preview Tool</h1>
 
   <p>
-    This tool demonstrates how stream alerts work on the Steushio platform.
-    Creators can use these tools during live streams.
+    This is a visual preview tool that demonstrates how stream alerts
+    appear on the Steushio platform.
   </p>
 
-  <label>Name:</label><br>
+  <p>
+    <strong>Note:</strong> This is a demo preview only. No real payments
+    or transactions are processed on this page.
+  </p>
+
+  <label>Display Name:</label><br>
   <input id="name" placeholder="Supporter Name"><br><br>
 
-  <label>Amount:</label><br>
-  <input id="amount" placeholder="99"><br><br>
+  <label>Test Value:</label><br>
+  <input id="value" placeholder="99"><br><br>
 
-  <button onclick="showAlert()">Trigger Alert</button>
+  <button onclick="showAlert()">Preview Alert</button>
 
   <div id="alertBox"></div>
 
   <script>
     function showAlert() {
       const name = document.getElementById("name").value || "User";
-      const amount = document.getElementById("amount").value || "99";
+      const value = document.getElementById("value").value || "99";
       const box = document.getElementById("alertBox");
 
-      box.innerHTML = "₹" + amount + " received from " + name;
+      box.innerHTML = "Alert triggered by " + name + " (value: " + value + ")";
       box.style.display = "block";
     }
   </script>

@@ -31,14 +31,28 @@
 
 <script>
   function preview(event) {
-    const img = document.createElement("img");
-    img.src = URL.createObjectURL(event.target.files[0]);
+    const file = event.target.files[0];
+    if (!file) return;
 
-    const previewDiv = document.getElementById("preview");
-    previewDiv.innerHTML = "";
-    previewDiv.appendChild(img);
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      // Save image to localStorage
+      localStorage.setItem("steushio_overlay", e.target.result);
+
+      // Show preview
+      const img = document.createElement("img");
+      img.src = e.target.result;
+
+      const previewDiv = document.getElementById("preview");
+      previewDiv.innerHTML = "";
+      previewDiv.appendChild(img);
+    };
+
+    reader.readAsDataURL(file);
   }
 </script>
+
 
 </body>
 </html>

@@ -38,9 +38,12 @@
   <p><strong>Demo only.</strong> No payments or transactions occur here.</p>
 
   <button onclick="show()">Show Overlay</button>
+<h3>Select an Overlay</h3>
+<div id="gallery"></div>
 
-  <div id="overlay" class="overlay"></div>
-    Stream Starting Soon<br>
+<div id="overlay" class="overlay"></div>
+   
+  Stream Starting Soon<br>
     Designed for Creators
   </div>
 
@@ -49,16 +52,25 @@
 </div>
 
 <script>
-  function show() {
-    const overlay = document.getElementById("overlay");
-    const stored = localStorage.getItem("steushio_overlay");
+  const overlays = JSON.parse(localStorage.getItem("steushio_overlays")) || [];
+  const gallery = document.getElementById("gallery");
+  const overlayBox = document.getElementById("overlay");
 
-    if (stored) {
-      overlay.style.backgroundImage = "url(" + stored + ")";
-      overlay.style.display = "block";
-    } else {
-      alert("No overlay uploaded yet. Upload one first.");
-    }
+  if (!overlays.length) {
+    gallery.innerHTML = "<p>No overlays uploaded yet.</p>";
+  } else {
+    overlays.forEach(src => {
+      const thumb = document.createElement("div");
+      thumb.className = "thumb";
+      thumb.style.backgroundImage = "url(" + src + ")";
+      thumb.onclick = () => {
+        overlayBox.style.backgroundImage = "url(" + src + ")";
+      };
+      gallery.appendChild(thumb);
+    });
+
+    // auto-load first overlay
+    overlayBox.style.backgroundImage = "url(" + overlays[0] + ")";
   }
 </script>
 

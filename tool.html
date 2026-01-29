@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stream Alert Tool – Steushio</title>
+  <style>
+    #alertBox {
+      display: none;
+      padding: 20px;
+      background: #222;
+      color: #0f0;
+      font-size: 20px;
+      margin-top: 20px;
+      width: fit-content;
+    }
+  </style>
+</head>
+<body>
+  <h1>Stream Alert Preview Tool</h1>
+
+  <p>
+    This tool demonstrates how stream alerts work on the Steushio platform.
+    Creators can use these tools during live streams.
+  </p>
+
+  <label>Name:</label><br>
+  <input id="name" placeholder="Supporter Name"><br><br>
+
+  <label>Amount:</label><br>
+  <input id="amount" placeholder="99"><br><br>
+
+  <button onclick="showAlert()">Trigger Alert</button>
+
+  <div id="alertBox"></div>
+
+  <script>
+    function showAlert() {
+      const name = document.getElementById("name").value || "User";
+      const amount = document.getElementById("amount").value || "99";
+      const box = document.getElementById("alertBox");
+
+      box.innerHTML = "₹" + amount + " received from " + name;
+      box.style.display = "block";
+    }
+  </script>
+
+  <br><br>
+  <a href="index.html">Back to Home</a>
+</body>
+</html>

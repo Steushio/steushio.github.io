@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Overlay Upload – Steushio</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #preview img {
+      max-width: 400px;
+      margin-top: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,.4);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Overlay Upload (Admin)</h1>
+
+  <p>
+    This page is for uploading and previewing overlay designs.
+  </p>
+
+  <input type="file" accept="image/*" onchange="preview(event)">
+
+  <div id="preview"></div>
+
+  <br>
+  <a href="index.html">← Back to Home</a>
+</div>
+
+<script>
+  function preview(event) {
+    const img = document.createElement("img");
+    img.src = URL.createObjectURL(event.target.files[0]);
+
+    const previewDiv = document.getElementById("preview");
+    previewDiv.innerHTML = "";
+    previewDiv.appendChild(img);
+  }
+</script>
+
+</body>
+</html>

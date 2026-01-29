@@ -4,26 +4,32 @@
   <title>Overlay Preview – Steushio</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    ..overlay {
-  width: 420px;
-  height: 120px;
-  border-radius: 14px;
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 0 20px rgba(0,0,0,.4);
-  margin-top: 20px;
-}
+    .overlay {
+      width: 420px;
+      height: 120px;
+      border-radius: 14px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 0 20px rgba(0,0,0,.4);
+      margin-top: 20px;
+      display: none;
+    }
 
-.thumb {
-  width: 100px;
-  height: 60px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 8px;
-  cursor: pointer;
-  margin: 6px;
-  display: inline-block;
-}
+    .thumb {
+      width: 100px;
+      height: 60px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 6px;
+      display: inline-block;
+      border: 2px solid transparent;
+    }
+
+    .thumb:hover {
+      border-color: #6a11cb;
+    }
   </style>
 </head>
 <body>
@@ -37,15 +43,10 @@
 
   <p><strong>Demo only.</strong> No payments or transactions occur here.</p>
 
-  <button onclick="show()">Show Overlay</button>
-<h3>Select an Overlay</h3>
-<div id="gallery"></div>
+  <h3>Select an Overlay</h3>
+  <div id="gallery"></div>
 
-<div id="overlay" class="overlay"></div>
-   
-  Stream Starting Soon<br>
-    Designed for Creators
-  </div>
+  <div id="overlay" class="overlay"></div>
 
   <br><br>
   <a href="index.html">← Back to Home</a>
@@ -57,20 +58,24 @@
   const overlayBox = document.getElementById("overlay");
 
   if (!overlays.length) {
-    gallery.innerHTML = "<p>No overlays uploaded yet.</p>";
+    gallery.innerHTML = "<p>No overlays uploaded yet. Upload one first.</p>";
   } else {
-    overlays.forEach(src => {
+    overlays.forEach((src, index) => {
       const thumb = document.createElement("div");
       thumb.className = "thumb";
       thumb.style.backgroundImage = "url(" + src + ")";
       thumb.onclick = () => {
         overlayBox.style.backgroundImage = "url(" + src + ")";
+        overlayBox.style.display = "block";
       };
       gallery.appendChild(thumb);
-    });
 
-    // auto-load first overlay
-    overlayBox.style.backgroundImage = "url(" + overlays[0] + ")";
+      // auto-load first overlay
+      if (index === 0) {
+        overlayBox.style.backgroundImage = "url(" + src + ")";
+        overlayBox.style.display = "block";
+      }
+    });
   }
 </script>
 
